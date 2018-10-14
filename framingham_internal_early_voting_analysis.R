@@ -7,17 +7,18 @@ framingham_voting <- early_voting %>%
     WeekendHours = sum(WeekendHours),
     NonBizHours = sum(TotalNonBusiness),
     TotalHours = sum(TotalHours)
-  ) %>%
-  mutate(
-    Zip = ifelse(framingham_voting$Location == "MCAULIFFE LIBRARY", "01701", "01702")
-  )
+  ) 
 
-framingham_voting$ZipPopulation <- c(31217, 37206)
+framingham_voting$Location[1] <- "McAuliffe Library"
+  framingham_voting$Location[2] <- "City Hall"
+  
+  framingham_voting <- merge(framingham_voting, voters_by_location, by.x = "Location", by.y = "EarlyVoteLocation")
+
 
 framingham_voting <- framingham_voting %>%
   mutate(
-  PopPerNonBizHour = round(ZipPopulation/NonBizHours),
-  PopPerHour = round(ZipPopulation/TotalHours)
+  VotersPerNonBizHour = round(RegisteredVoters/NonBizHours),
+  VotersPerHour = round(RegisteredVoters/TotalHours)
 )
 
 framingham_voting_by_place_and_day <- early_voting %>%

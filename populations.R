@@ -10,9 +10,22 @@ smaller5 <- framingham + 5
 larger5 <- framingham - 5
 cities <- pops[smaller5:larger5,]
 
+voters <- rio::import("data/enrollment_count_20180815.xlsx") %>%
+  rename(Place = `Aggregate Totals`) %>%
+  arrange(desc(Voters)) %>%
+  mutate(
+    Place = tolower(Place),
+    Place = tools::toTitleCase(Place)
+  )
+
+
+
 pops$Place <- ifelse(pops$Place == "Fall River city, Bristol County, MA", "Fall River", str_replace(pops$Place, "(.*?)\\s.*$", "\\1") )
 pop_lookup <- pops$Population
 names(pop_lookup) <- pops$Place
+
+voters_lookup <- voters$Voters
+names(voters_lookup) <- voters$Place
 
 income <- rio::import("data/acs2016_5yr_B19013_06000US2502141515/acs2016_5yr_B19013_06000US2502141515/acs2016_5yr_B19013_06000US2502141515.csv") %>%
   slice(-1) %>%
@@ -22,3 +35,22 @@ income <- rio::import("data/acs2016_5yr_B19013_06000US2502141515/acs2016_5yr_B19
 income$Place <- ifelse(income$Place == "Fall River city, Bristol County, MA", "Fall River", str_replace(income$Place, "(.*?)\\s.*$", "\\1") )
 income_lookup <- income$MedianIncome
 names(income_lookup) <- income$Place
+
+
+framingham_voters_by_precinct <- rio::import("data/2017_general_turnout_framingham.csv") %>%
+  mutate(
+    precinct = as.character(precinct)
+  )
+
+early_vote_area <- rio::import("data/PrecinctEarlyVotingLocations.xlsx")
+early_vote_area_lookup <- early_vote_area$EarlyVotingLocation
+early_vote_area$Precinct <- as.character(early_vote_area$Precinct)
+names(early_vote_area_lookup) <- early_vote_area$Precinct
+
+framingham_voters_by_precinct$EarlyVoteLocation <- early_vote_area_lookup[framingham_voters_by_precinct$precinct]
+
+voters_by_location <- framingham_voters_by_precinct %>%
+  group_by(EarlyVoteLocation) %>%
+  summarize(
+    RegisteredVoters = sum(total_registered_voters)
+  )

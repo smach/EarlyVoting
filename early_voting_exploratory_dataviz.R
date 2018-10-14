@@ -1,6 +1,6 @@
 library(taucharts)
 tauchart(non_business_hours_by_place[non_business_hours_by_place$Place != "Boston",]) %>%
-tau_point("Population", "NonBizHours", size="Population") %>%
+tau_point("RegVoters", "NonBizHours", size="RegVoters") %>%
 tau_guide_x(label="") %>%
 tau_guide_y(label="") %>%
 tau_tooltip() %>%  # includes all variables in mydf
@@ -10,7 +10,7 @@ tau_title("")
 
 library(taucharts)
 tauchart(framingham_and_similar_size) %>%
-  tau_point("Population", "NonBizHours", size="Population") %>%
+  tau_point("RegVoters", "NonBizHours", size="RegVoters") %>%
   tau_guide_x(label="") %>%
   tau_guide_y(label="") %>%
   tau_tooltip() %>%  # includes all variables in mydf
