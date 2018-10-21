@@ -1,14 +1,3 @@
----
-title: "README"
-author: "Sharon Machlis"
-date: "10/21/2018"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 In order to reproduce my analysis of early-voting hours in 25 Massachusetts communities, you need to do the following after cloning this GitHub repo on your own machine. I am assuming you are running RStudio and a recently up-to-date version of R.
 
 1. Run the config.R file. That will load necessary packages, installing them if needed.
