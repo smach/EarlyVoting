@@ -34,7 +34,8 @@ early_voting <- early_voting_basic %>%
    Evening = ifelse(EndTime > as.hms("18:00:00"), TRUE, FALSE)
   )
 
-# discovered readr::parse_time()
+# discovered readr::parse_time() don't need all this detailed code doing the calculations
+
 # early_voting$StartMinuteFraction <- case_when(
 #   early_voting$StartMinute == 0 ~ 0,
 #   early_voting$StartMinute == 15 ~ -.25,
@@ -71,4 +72,5 @@ early_voting <- early_voting %>%
    TotalHours = (as.integer(EndTime - StartTime))/3600
   )
 
-
+save(early_voting, pop_lookup, income_lookup, voters_lookup, thirty_or_more_commute, file = "data/early_voting_2018.Rdata")
+file.copy("data/early_voting_2018.Rdata", "d:/www/district2/data", overwrite = TRUE)

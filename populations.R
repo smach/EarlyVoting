@@ -36,6 +36,13 @@ income$Place <- ifelse(income$Place == "Fall River city, Bristol County, MA", "F
 income_lookup <- income$MedianIncome
 names(income_lookup) <- income$Place
 
+commute_times <- rio::import("data/commute_times.xlsx")
+commute_times$Place <- str_remove_all(commute_times$Place, " CDP, Massachusetts")
+commute_times$Place <- str_remove_all(commute_times$Place, " Town city, Massachusetts")
+commute_times$Place <- str_remove_all(commute_times$Place, " city, Massachusetts")
+
+thirty_or_more_commute <- commute_times$thirty_or_more
+names(thirty_or_more_commute) <- commute_times$Place
 
 framingham_voters_by_precinct <- rio::import("data/2017_general_turnout_framingham.csv") %>%
   mutate(
@@ -54,3 +61,4 @@ voters_by_location <- framingham_voters_by_precinct %>%
   summarize(
     RegisteredVoters = sum(total_registered_voters)
   )
+

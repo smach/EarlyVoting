@@ -16,7 +16,8 @@ non_business_hours_by_place <- early_voting %>%
     RegVotersPerNonBizHour = round(RegVoters/NonBizHours),
     IncomePerNonBizHour = round(MedianHouseholdIncome/NonBizHours),
     PopPerHour = round(Population/TotalHours),
-    IncomePerHour = round(MedianHouseholdIncome/TotalHours)
+    IncomePerHour = round(MedianHouseholdIncome/TotalHours),
+    PctThirtyMinPlusCommute = unname(thirty_or_more_commute[Place])
   )
 
 
@@ -39,7 +40,8 @@ framingham_and_similar_size <- early_voting %>%
     PopPerNonBizHour = round(Population/NonBizHours),
     IncomePerNonBizHour = round(MedianHouseholdIncome/NonBizHours),
     PopPerHour = round(Population/TotalHours),
-    IncomePerHour = round(MedianHouseholdIncome/TotalHours)
+    IncomePerHour = round(MedianHouseholdIncome/TotalHours),
+    PctThirtyMinPlusCommute = unname(thirty_or_more_commute[Place])
   )
 
 

@@ -52,5 +52,8 @@ ggplot(framingham_voting, aes(x=Location, y=NonBizHours, fill=Location)) +
   scale_fill_brewer(palette="Dark2") +
   theme_minimal()
 
+# Framingham workers 16 and over who didn't work at home, who travelled at least 30 minutes travel time to work. 
 
+# 01701: 12.7 + 3.9 + 6.5 + 14.8 + 11 + 2.1 = 51%. 27.9% 45 minutes or more.
+# 01702 16.2 + 3.2 + 4.9 + 8.2 + 8.8 + 2.1 = 43.4%
 
