@@ -1,4 +1,6 @@
-pops <- rio::import("data/acs2016_5yr_B01003_06000US2502141515.zip") %>%
+# This file imports some U.S. Census Bureau information about Massachusetts communities.
+
+pops <- rio::import("data/acs2016_5yr_B01003_06000US2502141515/acs2016_5yr_B01003_06000US2502141515/acs2016_5yr_B01003_06000US2502141515.csv") %>%
   slice(-1) %>%
   rename(Place = name, Population = B01003001, MoE = `B01003001, Error`) %>%
   arrange(desc(Population))

@@ -1,3 +1,7 @@
+# Some exploratory data visualizations. You may want to run these one code group at a time, instead of sourcing the whole file at once.
+
+# taucharts make great interactive scatterplots.
+
 library(taucharts)
 tauchart(non_business_hours_by_place[non_business_hours_by_place$Place != "Boston",]) %>%
 tau_point("RegVoters", "NonBizHours", size="RegVoters") %>%
@@ -7,6 +11,8 @@ tau_tooltip() %>%  # includes all variables in mydf
 tau_trendline( showPanel = FALSE )  %>%
 tau_title("")
 
+
+framingham_and_similar_size <- filter(non_business_hours_by_place, Place %in% c("Plymouth", "Brookline", "Malden", "Haverhill", "Waltham", "Framingham", "Lawrence", "Somerville", "Newton", "Fall River", "Lynn"))
 
 
 tauchart(framingham_and_similar_size) %>%
@@ -26,7 +32,7 @@ tauchart(framingham_and_similar_size) %>%
   tau_title("")
 
 
-# This is key for serving commuters
+# This is key for looking at how early voting non-biz hours serve commuters
 
 tauchart(framingham_and_similar_size) %>%
   tau_point("PctThirtyMinPlusCommute", "RegVotersPerNonBizHour", size="RegVoters") %>%
@@ -37,14 +43,16 @@ tauchart(framingham_and_similar_size) %>%
   tau_title("Percent Working Population With Commutes of 30 Mins or More vs Registered Voters per Non-Biz Early-Voting Hours")
 
 
+
+
+
 ggplot(data = framingham_and_similar_size, aes(x= reorder(Place, NonBizHours), y=NonBizHours)) +
   geom_bar(stat="identity", color = "black", fill="#0072B2") +
   ggtitle("Non-Business Early Voting Hours") +
   xlab("") +
   ylab("") +
   theme_classic() +
-  theme(plot.title=element_text(size=20))# +
- # theme(axis.text.x= element_text(angle=45, hjust = 1.3, vjust = 1.2))
+  theme(plot.title=element_text(size=20))
 
 
 ggplot(data = framingham_and_similar_size, aes(x= reorder(Place, RegVotersPerNonBizHour), y=RegVotersPerNonBizHour)) +

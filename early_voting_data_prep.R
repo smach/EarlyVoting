@@ -1,3 +1,5 @@
+# Data import and wrangling for early voting data
+
 # Read in spreadsheet with early voting data for each community in a separate tab:
 
 # Function to read in a tab and add column for Place equal to the tab name
@@ -72,5 +74,3 @@ early_voting <- early_voting %>%
    TotalHours = (as.integer(EndTime - StartTime))/3600
   )
 
-save(early_voting, pop_lookup, income_lookup, voters_lookup, thirty_or_more_commute, file = "data/early_voting_2018.Rdata")
-file.copy("data/early_voting_2018.Rdata", "d:/www/district2/data", overwrite = TRUE)

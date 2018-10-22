@@ -1,3 +1,5 @@
+# Some exploratory analysis of early voting by place and non-business hours
+
 non_business_hours_by_place <- early_voting %>%
   group_by(Place) %>%
   summarize(
@@ -20,6 +22,7 @@ non_business_hours_by_place <- early_voting %>%
     PctThirtyMinPlusCommute = unname(thirty_or_more_commute[Place])
   )
 
+# Similiar analysis for Framingham and the 5 communities larger and smaller than it
 
 framingham_and_similar_size <- early_voting %>%
   filter(Place %in% alltabs[1:11]) %>%

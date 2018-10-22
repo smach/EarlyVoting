@@ -1,0 +1,20 @@
+{
+    "release": {
+        "id": "acs2016_5yr",
+        "name": "ACS 2016 5-year",
+        "years": "2012-2016"
+    },
+    "tables": {
+        "B01003": {
+            "title": "Total Population",
+            "universe": "Total Population",
+            "denominator_column_id": null,
+            "columns": {
+                "B01003001": {
+                    "name": "Total",
+                    "indent": 0
+                }
+            }
+        }
+    }
+}

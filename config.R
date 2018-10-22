@@ -1,3 +1,5 @@
+# Loads necessary packages, installing if needed
+
 if(!require("pacman")){
   install.packages("pacman")
 }
