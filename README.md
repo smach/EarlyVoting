@@ -1,4 +1,4 @@
-In order to reproduce my analysis of early-voting hours in 25 Massachusetts communities, you need to do the following after cloning this GitHub repo on your own machine. I am assuming you are running RStudio and a recently up-to-date version of R.
+In order to reproduce [my analysis of early-voting hours in 25 Massachusetts communities](http://www.district2framingham.com/2018/10/21/early-voting-access-unequal-in-massachusetts/), you need to do the following after cloning this GitHub repo on your own machine. I am assuming you are running RStudio and a recently up-to-date version of R.
 
 1. Run the config.R file. That will load necessary packages, installing them on your system if needed.
 
